@@ -30,6 +30,7 @@ class Mymovies extends StatelessWidget {
                 ),
                 const SizedBox(width: 10),
                 const Icon(Icons.person_outline, size: 30.0),
+                 Icon(Icons.notification_add, size: 30.0),
               ],
             ),
           ),
@@ -38,20 +39,19 @@ class Mymovies extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-         
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Row(
               children: const [
                 Icon(Icons.location_pin, color: Colors.grey),
                 SizedBox(width: 5),
-                Text("JAKARTA", style: TextStyle(fontSize: 16, color: Colors.black)),
+                Text("JAKARTA",
+                    style: TextStyle(fontSize: 16, color: Colors.black)),
                 Spacer(),
                 Icon(Icons.keyboard_arrow_down, color: Colors.grey),
               ],
             ),
           ),
-          
           Expanded(
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -61,7 +61,7 @@ class Mymovies extends StatelessWidget {
                   genre: "Action, Adventure",
                   rating: "9.5",
                   ageRating: "D 17+",
-                  imagePath: "Assets/Images/horizontal2.jpg",
+                  imagePath: "Assets/Images/horizontal.jpg",
                 ),
                 const SizedBox(height: 16),
                 _buildMovieItem(
@@ -76,44 +76,70 @@ class Mymovies extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        notchMargin: 8.0,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          bottomNavigationBar: BottomAppBar(
+  shape: CircularNotchedRectangle(),
+  notchMargin: 8.0,
+  child: Padding(
+    padding: const EdgeInsets.symmetric(vertical: 8.0),
+    child: Wrap(
+      alignment: WrapAlignment.spaceAround,
+      children: [
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconButton(
-              icon: const Icon(Icons.home, color: Colors.grey),
+              icon: Icon(Icons.home, color: Colors.grey),
               onPressed: () {
                 Navigator.pushReplacementNamed(context, '/home');
               },
             ),
+            Text("Home", style: TextStyle(color: Colors.black, fontSize: 12)),
+          ],
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
             IconButton(
-              icon: const Icon(Icons.movie, color: Colors.grey),
+              icon: Icon(Icons.movie, color: Colors.grey),
               onPressed: () {
                 Navigator.pushReplacementNamed(context, '/movie');
               },
             ),
-            const SizedBox(width: 40),
+            Text("Movies", style: TextStyle(color: Colors.black, fontSize: 12)),
+          ],
+        ),
+        SizedBox(width: 40),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
             IconButton(
-              icon: const Icon(Icons.local_movies, color: Color.fromARGB(255, 0, 0, 0)),
+              icon: Icon(Icons.local_movies, color: Colors.black),
               onPressed: () {
                 Navigator.pushReplacementNamed(context, '/mymovie');
               },
             ),
+            Text("My Movies", style: TextStyle(color: Colors.black, fontSize: 12)),
+          ],
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
             IconButton(
-              icon: const Icon(Icons.movie_filter, color: Colors.grey),
+              icon: Icon(Icons.movie_filter, color: Colors.grey),
               onPressed: () {
                 Navigator.pushReplacementNamed(context, '/ticket');
               },
             ),
+            Text("My Ticket", style: TextStyle(color: Colors.black, fontSize: 12)),
           ],
         ),
-      ),
+      ],
+    ),
+  ),
+)
     );
   }
 
-  
   Widget _buildMovieItem({
     required String title,
     required String genre,
@@ -129,7 +155,6 @@ class Mymovies extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-         
           ClipRRect(
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(8),
@@ -143,7 +168,6 @@ class Mymovies extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 10),
-         
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -152,7 +176,8 @@ class Mymovies extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.bold),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -160,20 +185,23 @@ class Mymovies extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 6, vertical: 2),
                         decoration: BoxDecoration(
                           color: Colors.red.shade100,
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
                           ageRating,
-                          style: const TextStyle(color: Colors.red, fontSize: 12),
+                          style:
+                              const TextStyle(color: Colors.red, fontSize: 12),
                         ),
                       ),
                       const SizedBox(width: 8),
                       Text(
                         genre,
-                        style: const TextStyle(color: Colors.grey, fontSize: 12),
+                        style:
+                            const TextStyle(color: Colors.grey, fontSize: 12),
                       ),
                     ],
                   ),
@@ -184,7 +212,8 @@ class Mymovies extends StatelessWidget {
                       const SizedBox(width: 4),
                       Text(
                         rating,
-                        style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                        style: const TextStyle(
+                            fontSize: 12, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),

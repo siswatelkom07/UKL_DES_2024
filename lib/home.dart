@@ -29,7 +29,7 @@ class Homescreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Icon(Icons.person_off_outlined, size: 30.0),
+                  Icon(Icons.person_outlined, size: 30.0),
                   Icon(Icons.notification_add, size: 30.0),
                 ],
               ),
@@ -57,6 +57,7 @@ class Homescreen extends StatelessWidget {
                   enlargeCenterPage: false,
                   autoPlay: true,
                   autoPlayInterval: Duration(seconds: 3),
+                  viewportFraction: 1
                 ),
                 items: [
                   Container(
@@ -71,7 +72,7 @@ class Homescreen extends StatelessWidget {
                   Container(
                     color: const Color.fromARGB(255, 255, 255, 255),
                     child: Image.asset(
-                      'Assets/Images/horizontal2.jpg',
+                      'Assets/Images/images.jpeg',
                       fit: BoxFit.cover,
                       width: double.infinity,
                       height: double.infinity,
@@ -80,7 +81,7 @@ class Homescreen extends StatelessWidget {
                   Container(
                     color: const Color.fromARGB(255, 255, 255, 255),
                     child: Image.asset(
-                      'Assets/Images/horizontal2.jpg',
+                      'Assets/Images/dariword.png',
                       fit: BoxFit.cover,
                       width: double.infinity,
                       height: double.infinity,
@@ -162,8 +163,8 @@ class Homescreen extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       autoPlay: true,
                       autoPlayInterval: Duration(seconds: 5),
-                      enlargeCenterPage: true,
-                      viewportFraction: 0.4),
+                      enlargeCenterPage: false,
+                      viewportFraction: 0.5),
                   items: [
                     Container(
                       width: 200,
@@ -188,7 +189,7 @@ class Homescreen extends StatelessWidget {
                       ),
                       child: Center(
                         child: Image.asset(
-                          'Assets/Images/Vert.png',
+                          'Assets/Images/dooodooo.jpeg',
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -202,7 +203,7 @@ class Homescreen extends StatelessWidget {
                       ),
                       child: Center(
                         child: Image.asset(
-                          'Assets/Images/Vert.png',
+                          'Assets/Images/ll.jpg',
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -210,6 +211,8 @@ class Homescreen extends StatelessWidget {
                   ],
                 ),
               ),
+              Center(child:  Text("BILA BESOK IBU TIADA",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),)),
+              Center(child: Text("Film ini dapat rating 9,2 dari penonton lho! Harus\nditonton nih!",textAlign: TextAlign.center,),),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
@@ -221,6 +224,7 @@ class Homescreen extends StatelessWidget {
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
                     ),
+                    Text("Berita hiburan terhangat untuk Anda!"),
                     SizedBox(height: 10),
                     Row(
                       children: [
@@ -228,23 +232,10 @@ class Homescreen extends StatelessWidget {
                           child: SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(
-                              
                               children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.blue,
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Image.asset('Assets/Images/Tix.png'),
-                                ),
-                                SizedBox(width: 8), 
-                                Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.blue,
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Image.asset('Assets/Images/Tix.png'),
-                                ),
+                                _buildSpotlightItem('Assets/Images/Tix.png'),
+                                SizedBox(width: 8),
+                                _buildSpotlightItem('Assets/Images/Tix.png'),
                               ],
                             ),
                           ),
@@ -266,59 +257,97 @@ class Homescreen extends StatelessWidget {
                     ),
                     SizedBox(height: 10),
                     ListView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: 5,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          leading: Image.asset('Assets/Images/Tom.png'),
-                          title: Text("News Item $index"),
-                          subtitle: Text("2 jam lalu"),
-                          trailing: Icon(Icons.chevron_right),
-                        );
-                      },
-                    ),
+  shrinkWrap: true,
+  physics: NeverScrollableScrollPhysics(),
+  itemCount: 5,
+  itemBuilder: (context, index) {
+    // Define a list of different image paths
+    List<String> imagePaths = [
+      'Assets/Images/Tom.png',
+      'Assets/Images/Logo.png',
+      'Assets/Images/Vert.png',
+      'Assets/Images/dariword.png',
+      'Assets/Images/Tom.png',
+    ];
+
+    return ListTile(
+      leading: Image.asset(imagePaths[index]), // Use dynamic images based on the index
+      title: Text("News Item $index"),
+      subtitle: Text("2 jam lalu"),
+      trailing: Icon(Icons.chevron_right),
+    );
+  },
+)
                   ],
                 ),
               ),
             ],
           ),
         ),
-        bottomNavigationBar: BottomAppBar(
-          shape: CircularNotchedRectangle(),
-          notchMargin: 8.0,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              IconButton(
-                icon:
-                    Icon(Icons.home, color: const Color.fromARGB(255, 0, 0, 0)),
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/home');
-                },
-              ),
-              IconButton(
-                icon: Icon(Icons.movie, color: Colors.grey),
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/movie');
-                },
-              ),
-              SizedBox(width: 40),
-              IconButton(
-                icon: Icon(Icons.local_movies, color: Colors.grey),
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/mymovie');
-                },
-              ),
-              IconButton(
-                icon: Icon(Icons.movie_filter, color: Colors.grey),
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/ticket');
-                },
-              ),
-            ],
-          ),
-        ));
+       bottomNavigationBar: BottomAppBar(
+  shape: CircularNotchedRectangle(),
+  notchMargin: 8.0,
+  child: Padding(
+    padding: const EdgeInsets.symmetric(vertical: 8.0),
+    child: Wrap(
+      alignment: WrapAlignment.spaceAround,
+      children: [
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            IconButton(
+              icon: Icon(Icons.home, color: const Color.fromARGB(255, 0, 0, 0)),
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, '/home');
+              },
+            ),
+            Text("Home", style: TextStyle(color: Colors.black, fontSize: 12)),
+          ],
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            IconButton(
+              icon: Icon(Icons.movie, color: Colors.grey),
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, '/movie');
+              },
+            ),
+            Text("Movies", style: TextStyle(color: Colors.black, fontSize: 12)),
+          ],
+        ),
+        SizedBox(width: 40),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            IconButton(
+              icon: Icon(Icons.local_movies, color: Colors.grey),
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, '/mymovie');
+              },
+            ),
+            Text("My Movies", style: TextStyle(color: Colors.black, fontSize: 12)),
+          ],
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            IconButton(
+              icon: Icon(Icons.movie_filter, color: Colors.grey),
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, '/ticket');
+              },
+            ),
+            Text("My Ticket", style: TextStyle(color: Colors.black, fontSize: 12)),
+          ],
+        ),
+      ],
+    ),
+  ),
+)
+
+
+);
   }
 
   Widget _buildCategoryButton(String text, {bool isFavorite = false}) {
@@ -326,18 +355,48 @@ class Homescreen extends StatelessWidget {
       onPressed: () {},
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        backgroundColor: const Color.fromARGB(255, 239, 239, 239),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        side: BorderSide(
+            color: isFavorite ? Colors.red : const Color.fromARGB(255, 239, 239, 239)),
       ),
-      child: Row(
-        children: [
-          if (isFavorite) Icon(Icons.favorite, size: 20),
-          SizedBox(width: 5),
-          Text(
-            text,
-            style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
+      child: Text(
+        text,
+        style: TextStyle(color: Colors.black),
+      ),
+    );
+  }
+
+  Widget _buildSpotlightItem(String imagePath) {
+    return Column(
+      children: [
+        Container(
+          width: 300,
+          height: 150,
+          decoration: BoxDecoration(
+            color: Colors.blue,
+            borderRadius: BorderRadius.circular(8),
           ),
-        ],
-      ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.asset(
+              imagePath,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        SizedBox(height: 8), // Space between image and icons
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.remove_red_eye_rounded, color: Colors.grey),
+            SizedBox(width: 8),
+            Icon(Icons.thumb_up_alt, color: Colors.grey),
+          ],
+        ),
+      ],
     );
   }
 }

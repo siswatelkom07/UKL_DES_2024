@@ -13,7 +13,7 @@ class _SplashscreenState extends State<Splashscreen> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 8), () {
+    Timer(const Duration(seconds: 1), () {
       Navigator.pushReplacementNamed(context, '/login');
     });
   }
@@ -21,15 +21,13 @@ class _SplashscreenState extends State<Splashscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255,0,26,60),
+      backgroundColor: const Color.fromARGB(255, 0, 26, 60),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-           
             Image.asset('Assets/Images/Logo.png'),
             const SizedBox(height: 20),
-          
             const Text.rich(
               TextSpan(
                 children: [
@@ -42,7 +40,7 @@ class _SplashscreenState extends State<Splashscreen> {
                     ),
                   ),
                   TextSpan(
-                    text: "       dapat hadiah!", 
+                    text: "       dapat hadiah!",
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -54,7 +52,6 @@ class _SplashscreenState extends State<Splashscreen> {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 10),
-            
             const Text.rich(
               TextSpan(
                 children: [
@@ -66,7 +63,7 @@ class _SplashscreenState extends State<Splashscreen> {
                     ),
                   ),
                   TextSpan(
-                    text: "       mendapatkan hadiah dan diskon.", 
+                    text: "       mendapatkan hadiah dan diskon.",
                     style: TextStyle(
                       fontSize: 14,
                       color: Colors.white,

@@ -11,11 +11,10 @@ class Ticket extends StatelessWidget {
         title: Text("Film Bioskop"),
       ),
       body: DefaultTabController(
-        length: 2, 
+        length: 2,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-           
             TabBar(
               labelColor: Colors.black,
               unselectedLabelColor: Colors.grey,
@@ -25,11 +24,10 @@ class Ticket extends StatelessWidget {
                 Tab(text: "AKAN DATANG"),
               ],
             ),
-            
             Expanded(
               child: TabBarView(
                 children: [
-                  
+                  // "SEDANG TAYANG" Tab
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: GridView.count(
@@ -38,18 +36,38 @@ class Ticket extends StatelessWidget {
                       crossAxisSpacing: 16.0,
                       childAspectRatio: 0.7,
                       children: [
-                        _buildMovieCard("BILA ESOK IBU TIADA", "Drama, Keluarga", "9.2", "Assets/Images/horizontal.jpg"),
-                        _buildMovieCard("SANTET SEGORO PITU", "Horror", "9.0", "Assets/Images/horizontal.jpg"),
-                        _buildMovieCard("GLADIATOR II", "Action, Adventure", "9.5", "Assets/Images/horizontal.jpg"),
-                        _buildMovieCard("RED ONE", "Action, Adventure", "9.3", "Assets/Images/horizontal.jpg"),
+                        _buildMovieCard(
+                            "BILA ESOK IBU TIADA",
+                            "Drama, Keluarga",
+                            "9.2",
+                            "Assets/Images/horizontal2.jpg"),
+                        _buildMovieCard("SANTET SEGORO PITU", "Horror", "9.0",
+                            "Assets/Images/horizontal.jpg"),
+                        _buildMovieCard("GLADIATOR II", "Action, Adventure",
+                            "9.5", "Assets/Images/images.jpeg"),
+                        _buildMovieCard("RED ONE", "Action, Adventure", "9.3",
+                            "Assets/Images/ll.jpg"),
                       ],
                     ),
                   ),
                  
-                  Center(
-                    child: Text(
-                      "Belum Ada Data Film Akan Datang",
-                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: GridView.count(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 16.0,
+                      crossAxisSpacing: 16.0,
+                      childAspectRatio: 0.7,
+                      children: [
+                        _buildMovieCard("MARVELS LEGACY", "Superhero, Action",
+                            "8.9", "Assets/Images/dariword.png"),
+                        _buildMovieCard("FANTASY WORLD", "Adventure, Fantasy",
+                            "8.7", "Assets/Images/horizontal.jpg"),
+                        _buildMovieCard("GALAXY WARS: THE RETURN", "Sci-Fi",
+                            "9.1", "Assets/Images/dooodooo.jpeg"),
+                        _buildMovieCard("MYSTIC RIVER", "Thriller, Mystery",
+                            "8.8", "Assets/Images/horizontal.jpg"),
+                      ],
                     ),
                   ),
                 ],
@@ -58,45 +76,72 @@ class Ticket extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        notchMargin: 8.0,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          bottomNavigationBar: BottomAppBar(
+  shape: CircularNotchedRectangle(),
+  notchMargin: 8.0,
+  child: Padding(
+    padding: const EdgeInsets.symmetric(vertical: 8.0),
+    child: Wrap(
+      alignment: WrapAlignment.spaceAround,
+      children: [
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconButton(
-              icon: const Icon(Icons.home, color: Colors.grey),
+              icon: Icon(Icons.home, color:  Colors.grey),
               onPressed: () {
                 Navigator.pushReplacementNamed(context, '/home');
               },
             ),
+            Text("Home", style: TextStyle(color: Colors.black, fontSize: 12)),
+          ],
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
             IconButton(
-              icon: const Icon(Icons.movie, color: Colors.grey),
+              icon: Icon(Icons.movie, color: Colors.grey),
               onPressed: () {
                 Navigator.pushReplacementNamed(context, '/movie');
               },
             ),
-            const SizedBox(width: 40), 
+            Text("Movies", style: TextStyle(color: Colors.black, fontSize: 12)),
+          ],
+        ),
+        SizedBox(width: 40),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
             IconButton(
-              icon: const Icon(Icons.local_movies, color: Colors.grey),
+              icon: Icon(Icons.local_movies, color: Colors.grey),
               onPressed: () {
                 Navigator.pushReplacementNamed(context, '/mymovie');
               },
             ),
+            Text("My Movies", style: TextStyle(color: Colors.black, fontSize: 12)),
+          ],
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
             IconButton(
-              icon: const Icon(Icons.movie_filter, color: Color.fromARGB(255, 0, 0, 0)),
+              icon: Icon(Icons.movie_filter, color: Colors.black),
               onPressed: () {
                 Navigator.pushReplacementNamed(context, '/ticket');
               },
             ),
+            Text("My Ticket", style: TextStyle(color: Colors.black, fontSize: 12)),
           ],
         ),
-      ),
+      ],
+    ),
+  ),
+)
     );
   }
 
-  
-  Widget _buildMovieCard(String title, String genre, String rating, String imagePath) {
+  Widget _buildMovieCard(
+      String title, String genre, String rating, String imagePath) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
@@ -122,7 +167,8 @@ class Ticket extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
                 ),
                 Text(
                   genre,

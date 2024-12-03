@@ -30,6 +30,7 @@ class Movies extends StatelessWidget {
                 ),
                 const SizedBox(width: 10),
                 const Icon(Icons.person_outline, size: 30.0),
+                Icon(Icons.notification_add, size: 30.0),
               ],
             ),
           ),
@@ -38,20 +39,19 @@ class Movies extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-         
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Row(
               children: const [
                 Icon(Icons.location_pin, color: Colors.grey),
                 SizedBox(width: 5),
-                Text("JAKARTA", style: TextStyle(fontSize: 16, color: Colors.black)),
+                Text("JAKARTA",
+                    style: TextStyle(fontSize: 16, color: Colors.black)),
                 Spacer(),
                 Icon(Icons.keyboard_arrow_down, color: Colors.grey),
               ],
             ),
           ),
-        
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Container(
@@ -70,7 +70,8 @@ class Movies extends StatelessWidget {
                       children: const [
                         Text(
                           "Tandai bioskop favoritmu!",
-                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.bold),
                         ),
                         SizedBox(height: 5),
                         Text(
@@ -81,9 +82,7 @@ class Movies extends StatelessWidget {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {
-                     
-                    },
+                    onPressed: () {},
                     child: const Text("Mengerti"),
                   ),
                 ],
@@ -91,7 +90,6 @@ class Movies extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-        
           Expanded(
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -104,50 +102,75 @@ class Movies extends StatelessWidget {
                 _buildCinemaItem("ARION XXI"),
                 _buildCinemaItem("ARTHA GADING XXI"),
                 _buildCinemaItem("BASSURA XXI"),
-               
               ],
             ),
           ),
         ],
       ),
       bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        notchMargin: 8.0,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+  shape: CircularNotchedRectangle(),
+  notchMargin: 8.0,
+  child: Padding(
+    padding: const EdgeInsets.symmetric(vertical: 8.0),
+    child: Wrap(
+      alignment: WrapAlignment.spaceAround,
+      children: [
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconButton(
-              icon: const Icon(Icons.home, color: Colors.grey),
+              icon: Icon(Icons.home, color:  Colors.grey),
               onPressed: () {
                 Navigator.pushReplacementNamed(context, '/home');
               },
             ),
+            Text("Home", style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0), fontSize: 12)),
+          ],
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
             IconButton(
-              icon: const Icon(Icons.movie, color: Color.fromARGB(255, 0, 0, 0)),
+              icon: Icon(Icons.movie, color: const Color.fromARGB(255, 0, 0, 0)),
               onPressed: () {
                 Navigator.pushReplacementNamed(context, '/movie');
               },
             ),
-            const SizedBox(width: 40), 
+            Text("Movies", style: TextStyle(color: Colors.black, fontSize: 12)),
+          ],
+        ),
+        SizedBox(width: 40),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
             IconButton(
-              icon: const Icon(Icons.local_movies, color: Colors.grey),
+              icon: Icon(Icons.local_movies, color: Colors.grey),
               onPressed: () {
                 Navigator.pushReplacementNamed(context, '/mymovie');
               },
             ),
+            Text("My Movies", style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0), fontSize: 12)),
+          ],
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
             IconButton(
-              icon: const Icon(Icons.airplane_ticket, color: Colors.grey),
+              icon: Icon(Icons.movie_filter, color: Colors.grey),
               onPressed: () {
                 Navigator.pushReplacementNamed(context, '/ticket');
               },
             ),
+            Text("My Ticket", style: TextStyle(color: Colors.black, fontSize: 12)),
           ],
         ),
-      ),
+      ],
+    ),
+  ),
+),
     );
   }
 
-  
   Widget _buildCinemaItem(String cinemaName) {
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -157,9 +180,7 @@ class Movies extends StatelessWidget {
         style: const TextStyle(fontSize: 14, color: Colors.black),
       ),
       trailing: const Icon(Icons.keyboard_arrow_right, color: Colors.grey),
-      onTap: () {
-       
-      },
+      onTap: () {},
     );
   }
 }
